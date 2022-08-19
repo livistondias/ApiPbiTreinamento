@@ -49,10 +49,10 @@ namespace PowerBiAuth
 
         }
 
-        public async Task<string> AuthenticationClienteContext(string resourceUrl, string clientId, string tenantId)
+        public async Task<string> AuthenticationClientContext(string resourceUrl, string clientId, string tenantId)
         {
             try
-            {                
+            {                                
                 HttpClient client = new HttpClient();
                 var clientSecret = ClientSecret;                
                 var content = new FormUrlEncodedContent(new[]
@@ -60,7 +60,7 @@ namespace PowerBiAuth
                     new KeyValuePair<string, string>("grant_type", "client_credentials"),
                     new KeyValuePair<string, string>("client_id", clientId),
                     new KeyValuePair<string, string>("scope", resourceUrl),
-                    new KeyValuePair<string, string>("client_secret",clientSecret)
+                    new KeyValuePair<string, string>("client_secret",clientSecret)                    
                 });
                 var result = await client.PostAsync($"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token", content).ContinueWith((response) =>
                 {

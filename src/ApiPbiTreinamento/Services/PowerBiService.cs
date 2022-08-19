@@ -42,9 +42,9 @@ namespace ApiPbiTreinamento.Services
             {
                 result = new EmbedConfig { Username = username, Roles = roles };
                 
-                var pbi = new PowerBiAuth.Authentication(Username, Password);
-                //var pbi = new PowerBiAuth.Authentication(ClientSecret);
-                var accessToken = await pbi.AuthenticationContext(ResourceUrl, ApplicationId, TenantId);
+                
+                var pbi = new PowerBiAuth.Authentication(ClientSecret);
+                var accessToken = await pbi.AuthenticationClientContext(ResourceUrl, ApplicationId, TenantId);
                 
                 var tokenCredentials = new TokenCredentials(accessToken, "Bearer");
 
